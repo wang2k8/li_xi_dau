@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎉 Tổng Lì Xì Của Bạn!</title>
+  <link rel="stylesheet" href="result.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Fireworks canvas -->
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Falling money coins -->
+  <div class="money-rain" id="moneyRain" aria-hidden="true"></div>
+
+  <!-- Confetti container -->
+  <div class="confetti-container" id="confettiContainer" aria-hidden="true"></div>
+
+  <!-- Main content -->
+  <div class="result-wrapper">
+
+    <!-- Sparkle ring -->
+    <div class="result-ring">
+      <div class="ring-inner">
+        <div class="ring-sparkles" aria-hidden="true">
+          <span class="sparkle s1">✦</span>
+          <span class="sparkle s2">★</span>
+          <span class="sparkle s3">✦</span>
+          <span class="sparkle s4">★</span>
+          <span class="sparkle s5">✦</span>
+          <span class="sparkle s6">★</span>
+          <span class="sparkle s7">✦</span>
+          <span class="sparkle s8">★</span>
+        </div>
+        <div class="result-top-label">🧧 Tổng Lì Xì Của Bạn 🧧</div>
+        <div class="result-amount" id="resultAmount">0 ₫</div>
+        <div class="result-count" id="resultCount"></div>
+        <div class="result-wish">💛 Phát tài phát lộc · Vạn sự như ý 💛</div>
+      </div>
+    </div>
+
+    <!-- Breakdown table -->
+    <div class="breakdown-card" id="breakdownCard"></div>
+
+    <!-- Buttons -->
+    <div class="action-buttons">
+      <button class="btn-back" onclick="goBack()">
+        ← Tính lại
+      </button>
+      <button class="btn-share" onclick="share()">
+        🎊 Chia sẻ
+      </button>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      Trang web này chỉ mang tính chất giải trí vui vẻ trong dịp Tết.<br />
+      Việc sử dụng các mệnh giá tiền chỉ nhằm mục đích mô phỏng lì xì<br />
+      và không mang bất kỳ ý nghĩa tiêu cực nào liên quan đến tiền tệ thực tế.
+    </div>
+
+  </div>
+
+  <script src="result.js"></script>
+</body>
+</html>

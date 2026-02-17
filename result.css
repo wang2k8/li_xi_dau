@@ -1,0 +1,345 @@
+/* =============================================
+   TẾT LÌ XÌ - result.css
+   ============================================= */
+
+:root {
+  --red-deep:    #6B0000;
+  --red-main:    #C8102E;
+  --gold-bright: #FFD700;
+  --gold-main:   #DAA520;
+  --gold-dark:   #B8860B;
+  --gold-pale:   #FFF8DC;
+  --cream:       rgba(255,248,220,0.12);
+  --shadow-gold: rgba(255,215,0,0.4);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at center top, #1A0000 0%, #0A0000 60%, #000 100%);
+  font-family: 'Be Vietnam Pro', sans-serif;
+  overflow-x: hidden;
+  animation: fadeIn 0.6s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ---- Fireworks Canvas ---- */
+#fireworksCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Money Rain ---- */
+.money-rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.money-coin {
+  position: absolute;
+  top: -60px;
+  font-size: 1.4rem;
+  animation: fallDown linear infinite;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 4px rgba(255,215,0,0.4));
+}
+
+@keyframes fallDown {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.9; }
+  80%  { opacity: 0.8; }
+  100% { transform: translateY(105vh) rotate(360deg) scale(0.8); opacity: 0; }
+}
+
+/* ---- Confetti ---- */
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 14px;
+  animation: confettiFall linear infinite;
+  border-radius: 2px;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg) translateX(0); opacity: 1; }
+  50%  { transform: translateY(50vh) rotate(180deg) translateX(30px); }
+  100% { transform: translateY(105vh) rotate(360deg) translateX(-10px); opacity: 0; }
+}
+
+/* ---- Main Wrapper ---- */
+.result-wrapper {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  gap: 24px;
+}
+
+/* ---- Result Ring ---- */
+.result-ring {
+  position: relative;
+  width: min(520px, 92vw);
+  padding: 4px;
+  background: conic-gradient(
+    from 0deg,
+    var(--gold-dark) 0%,
+    var(--gold-bright) 25%,
+    var(--red-main) 50%,
+    var(--gold-bright) 75%,
+    var(--gold-dark) 100%
+  );
+  border-radius: 24px;
+  box-shadow:
+    0 0 60px rgba(255,215,0,0.3),
+    0 0 120px rgba(200,16,46,0.2),
+    0 20px 60px rgba(0,0,0,0.6);
+  animation: ringPulse 3s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { box-shadow: 0 0 60px rgba(255,215,0,0.3), 0 0 120px rgba(200,16,46,0.2), 0 20px 60px rgba(0,0,0,0.6); }
+  50%       { box-shadow: 0 0 90px rgba(255,215,0,0.5), 0 0 160px rgba(200,16,46,0.35), 0 20px 80px rgba(0,0,0,0.6); }
+}
+
+.ring-inner {
+  background: linear-gradient(160deg, #1C0500 0%, #120000 100%);
+  border-radius: 20px;
+  padding: 36px 28px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ring-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,215,0,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(200,16,46,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ---- Sparkles ---- */
+.ring-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  color: var(--gold-bright);
+  font-size: 0.9rem;
+  opacity: 0.7;
+  animation: sparkleTwinkle 2s ease-in-out infinite;
+}
+
+.s1 { top: 12%; left: 8%;  animation-delay: 0s; }
+.s2 { top: 8%;  left: 28%; animation-delay: 0.3s; }
+.s3 { top: 12%; right: 8%; animation-delay: 0.6s; }
+.s4 { top: 8%;  right: 28%;animation-delay: 0.9s; }
+.s5 { bottom: 12%; left: 8%;   animation-delay: 0.15s; }
+.s6 { bottom: 8%;  left: 28%;  animation-delay: 0.45s; }
+.s7 { bottom: 12%; right: 8%;  animation-delay: 0.75s; }
+.s8 { bottom: 8%;  right: 28%; animation-delay: 1.05s; }
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+  50%       { opacity: 1;   transform: scale(1.3) rotate(20deg); }
+}
+
+/* ---- Result Text ---- */
+.result-top-label {
+  font-size: 0.8rem;
+  color: rgba(255,215,0,0.65);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.result-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 8vw, 4rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  word-break: break-all;
+  background: linear-gradient(135deg, #FFF3A0 0%, #FFD700 40%, #DAA520 70%, #FFF3A0 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerText 3s linear infinite, countUp 0.8s ease both 0.4s;
+  filter: drop-shadow(0 0 20px rgba(255,215,0,0.4));
+}
+
+@keyframes shimmerText {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.result-count {
+  font-size: 0.8rem;
+  color: rgba(255,215,0,0.5);
+  margin-top: 6px;
+  letter-spacing: 1px;
+}
+
+.result-wish {
+  font-size: 0.85rem;
+  color: rgba(255,215,0,0.7);
+  margin-top: 16px;
+  letter-spacing: 1px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,215,0,0.15);
+}
+
+/* ---- Breakdown ---- */
+.breakdown-card {
+  width: min(520px, 92vw);
+  background: rgba(255,248,220,0.06);
+  border: 1px solid rgba(255,215,0,0.15);
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.breakdown-card:empty { display: none; }
+
+.breakdown-title {
+  padding: 12px 20px;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  color: rgba(255,215,0,0.5);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,215,0,0.1);
+}
+
+.breakdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(255,215,0,0.06);
+  animation: slideIn 0.4s ease both;
+}
+
+.breakdown-row:last-child { border-bottom: none; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.bd-label {
+  font-size: 0.82rem;
+  color: rgba(255,248,220,0.7);
+  font-weight: 500;
+}
+
+.bd-qty {
+  font-size: 0.8rem;
+  color: rgba(255,215,0,0.5);
+  padding: 0 12px;
+}
+
+.bd-sub {
+  font-size: 0.85rem;
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+
+/* ---- Action Buttons ---- */
+.action-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-back, .btn-share {
+  padding: 13px 30px;
+  border-radius: 40px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-back {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,215,0,0.8);
+  border: 1.5px solid rgba(255,215,0,0.25);
+}
+
+.btn-back:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,215,0,0.5);
+  transform: translateY(-2px);
+}
+
+.btn-share {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-bright));
+  color: var(--red-deep);
+}
+
+.btn-share:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(255,215,0,0.4);
+}
+
+/* ---- Disclaimer ---- */
+.disclaimer {
+  max-width: 480px;
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 1.7;
+  color: rgba(255,248,220,0.3);
+  padding: 0 12px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+  .result-wrapper { padding: 20px 12px; gap: 18px; }
+  .ring-inner { padding: 28px 18px 24px; }
+  .action-buttons { gap: 10px; }
+  .btn-back, .btn-share { padding: 11px 22px; font-size: 0.82rem; }
+}

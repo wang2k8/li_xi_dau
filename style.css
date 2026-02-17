@@ -1,0 +1,522 @@
+/* =============================================
+   TẾT LÌ XÌ CALCULATOR - style.css
+   ============================================= */
+
+:root {
+  --red-deep:    #8B0000;
+  --red-main:    #C8102E;
+  --red-light:   #E63950;
+  --gold-bright: #FFD700;
+  --gold-main:   #DAA520;
+  --gold-dark:   #B8860B;
+  --gold-pale:   #FFF3C4;
+  --cream:       #FFF8EE;
+  --dark-text:   #2D1200;
+  --card-bg:     #FFFDF5;
+  --shadow-red:  rgba(200, 16, 46, 0.25);
+  --shadow-gold: rgba(218, 165, 32, 0.35);
+  --radius-lg:   18px;
+  --radius-md:   12px;
+  --radius-sm:   8px;
+  --transition:  0.22s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  background: var(--red-deep);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, #A50020 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 100%, #700010 0%, transparent 55%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.04'%3E%3Cpath d='M30 0 L33 10 L43 10 L35 16 L38 27 L30 21 L22 27 L25 16 L17 10 L27 10Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  font-family: 'Be Vietnam Pro', sans-serif;
+  color: var(--dark-text);
+  overflow-x: hidden;
+}
+
+/* ---- Decorative floating elements ---- */
+.deco-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.deco-flower,
+.deco-lantern {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.15;
+  animation: floatDeco 8s ease-in-out infinite;
+}
+
+.deco-flower:nth-child(1) { top: 5%;  left: 3%;  animation-delay: 0s;    font-size: 2.5rem; }
+.deco-flower:nth-child(2) { top: 12%; right: 5%; animation-delay: 2s;    font-size: 1.8rem; }
+.deco-lantern:nth-child(3){ top: 8%;  left: 15%; animation-delay: 1s;    font-size: 2.2rem; }
+.deco-lantern:nth-child(4){ top: 3%;  right: 15%;animation-delay: 3s;    font-size: 2rem;   }
+.deco-flower:nth-child(5) { bottom: 20%; left: 2%; animation-delay: 1.5s; font-size: 2rem;   }
+.deco-lantern:nth-child(6){ bottom: 10%; right: 3%;animation-delay: 2.5s; font-size: 2.5rem; }
+.deco-flower:nth-child(7) { bottom: 5%; left: 40%; animation-delay: 0.8s; font-size: 1.5rem; }
+
+@keyframes floatDeco {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-18px) rotate(8deg); }
+}
+
+/* ---- App Wrapper ---- */
+.app-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  min-height: 100vh;
+}
+
+/* ---- Header ---- */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin-bottom: 24px;
+  gap: 8px;
+}
+
+.header-center { flex: 1; }
+
+.header-ornament {
+  font-size: 0.75rem;
+  color: var(--gold-main);
+  letter-spacing: 4px;
+  white-space: nowrap;
+  opacity: 0.7;
+}
+
+.year-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-bright));
+  color: var(--red-deep);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 14px;
+  border-radius: 20px;
+  margin-bottom: 6px;
+}
+
+.app-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--gold-bright);
+  text-shadow:
+    0 0 30px rgba(255,215,0,0.5),
+    2px 2px 0 var(--red-deep),
+    4px 4px 8px rgba(0,0,0,0.3);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.title-icon {
+  display: inline-block;
+  animation: swing 2.5s ease-in-out infinite;
+}
+.title-icon:last-child { animation-direction: reverse; }
+
+@keyframes swing {
+  0%, 100% { transform: rotate(-8deg); }
+  50%       { transform: rotate(8deg); }
+}
+
+.app-subtitle {
+  color: rgba(255,215,0,0.75);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+/* ---- Calculator Screen ---- */
+.calc-screen-wrapper {
+  margin-bottom: 24px;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-bright), var(--gold-dark));
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.calc-screen {
+  background: linear-gradient(160deg, #1A0A00 0%, #2D1200 100%);
+  border-radius: calc(var(--radius-lg) - 4px);
+  padding: 20px 28px;
+  text-align: right;
+  position: relative;
+  overflow: hidden;
+}
+
+.calc-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,215,0,0.02) 2px,
+    rgba(255,215,0,0.02) 4px
+  );
+  pointer-events: none;
+}
+
+.screen-label {
+  font-size: 0.7rem;
+  color: rgba(218,165,32,0.6);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.screen-value {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  font-weight: 900;
+  color: var(--gold-bright);
+  text-shadow: 0 0 20px rgba(255,215,0,0.6);
+  line-height: 1.2;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  word-break: break-all;
+}
+
+.screen-count {
+  font-size: 0.78rem;
+  color: rgba(218,165,32,0.55);
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+/* ---- Bills Grid ---- */
+.bills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+/* ---- Bill Card ---- */
+.bill-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 14px 12px 12px;
+  box-shadow:
+    0 4px 16px rgba(0,0,0,0.2),
+    0 1px 3px rgba(0,0,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.bill-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, var(--gold-main), var(--red-light), var(--gold-main));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.bill-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow:
+    0 12px 32px var(--shadow-red),
+    0 4px 12px rgba(0,0,0,0.15);
+}
+
+.bill-card:hover::before { opacity: 1; }
+
+.bill-card.has-value {
+  border-color: var(--gold-main);
+  box-shadow:
+    0 4px 20px var(--shadow-gold),
+    0 1px 3px rgba(0,0,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.bill-card.has-value::before { opacity: 0.6; }
+
+/* Bill image mock */
+.bill-image {
+  width: 100%;
+  height: 72px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.bill-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 8px,
+    rgba(255,255,255,0.06) 8px,
+    rgba(255,255,255,0.06) 16px
+  );
+}
+
+/* Color themes per denomination - Updated for VND accuracy */
+
+/* 500đ: Màu đỏ cánh sen/hồng nhạt (Tiền giấy) */
+.bill-500    { background: linear-gradient(135deg, #f5a9b8, #d47d90); color: #fff; }
+
+/* 1.000đ: Màu tím nhạt/xám (Tiền giấy) */
+.bill-1000   { background: linear-gradient(135deg, #b0a4c0, #8e82a0); color: #fff; }
+
+/* 2.000đ: Màu nâu xám/vàng đất (Tiền giấy) */
+.bill-2000   { background: linear-gradient(135deg, #c5b29b, #9e8c75); color: #fff; }
+
+/* 5.000đ: Màu xanh dương đậm (Tiền giấy) */
+.bill-5000   { background: linear-gradient(135deg, #4a90e2, #2171c7); color: #fff; }
+
+/* 10.000đ: Màu vàng nâu/vàng sẫm (Polymer) */
+.bill-10000  { background: linear-gradient(135deg, #e5a952, #c68a35); color: #fff; }
+
+/* 20.000đ: Màu xanh lơ/xanh biển đậm (Polymer) */
+.bill-20000  { background: linear-gradient(135deg, #4b8cb2, #2a698f); color: #fff; }
+
+/* 50.000đ: Màu hồng đỏ/tím đỏ (Polymer) */
+.bill-50000  { background: linear-gradient(135deg, #ef72a0, #c84e7a); color: #fff; }
+
+/* 100.000đ: Màu xanh lá cây (Polymer) */
+.bill-100000 { background: linear-gradient(135deg, #6bb55a, #4a8d3e); color: #fff; }
+
+/* 200.000đ: Màu đỏ nâu/cam đất (Polymer) */
+.bill-200000 { background: linear-gradient(135deg, #f28b50, #c4642d); color: #fff; }
+
+/* 500.000đ: Màu xanh lơ - Cyan đậm (Polymer) */
+.bill-500000 { background: linear-gradient(135deg, #4ca6a6, #2d7d7d); color: #fff; }
+
+.bill-label {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--red-main);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* Input row */
+.bill-input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qty-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(145deg, var(--red-main), var(--red-deep));
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(200,16,46,0.35);
+  transition: transform var(--transition), box-shadow var(--transition);
+  line-height: 1;
+}
+
+.qty-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(200,16,46,0.45);
+}
+
+.qty-btn:active { transform: scale(0.95); }
+
+.qty-input {
+  flex: 1;
+  height: 30px;
+  border: 2px solid #E8D5A3;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--dark-text);
+  background: #FFFDF8;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  -moz-appearance: textfield;
+}
+
+.qty-input::-webkit-inner-spin-button,
+.qty-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+.qty-input:focus {
+  outline: none;
+  border-color: var(--gold-main);
+  box-shadow: 0 0 0 3px rgba(218,165,32,0.2);
+}
+
+.bill-subtotal {
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--gold-dark);
+  font-weight: 600;
+  margin-top: 6px;
+  min-height: 16px;
+  letter-spacing: 0.3px;
+}
+
+/* ---- Calculate Button ---- */
+.btn-calculate-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.btn-calculate {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 40px;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-bright) 50%, var(--gold-main) 100%);
+  background-size: 200% auto;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--red-deep);
+  cursor: pointer;
+  box-shadow:
+    0 6px 24px rgba(218,165,32,0.5),
+    0 2px 8px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.5);
+  transition: all 0.3s ease;
+  animation: shimmer 3s linear infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-calculate::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: rgba(255,255,255,0.3);
+  transform: skewX(-20deg);
+  animation: shineBtn 3s 1s infinite;
+}
+
+@keyframes shineBtn {
+  0%   { left: -60%; }
+  100% { left: 120%; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.btn-calculate:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 10px 36px rgba(218,165,32,0.6),
+    0 4px 12px rgba(0,0,0,0.3);
+}
+
+.btn-calculate:active { transform: translateY(0) scale(0.98); }
+
+.btn-icon { font-size: 1.3rem; }
+
+.btn-reset {
+  background: transparent;
+  border: 1.5px solid rgba(255,215,0,0.4);
+  color: rgba(255,215,0,0.7);
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all var(--transition);
+}
+
+.btn-reset:hover {
+  background: rgba(255,215,0,0.1);
+  border-color: rgba(255,215,0,0.7);
+  color: var(--gold-bright);
+}
+
+/* ---- Footer ---- */
+.app-footer {
+  text-align: center;
+  color: rgba(255,215,0,0.4);
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  padding-top: 8px;
+}
+
+/* ---- Page transition ---- */
+body.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.03); }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .app-wrapper { padding: 16px 12px 32px; }
+  .bills-grid  { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .app-header  { gap: 4px; }
+  .header-ornament { font-size: 0.6rem; letter-spacing: 2px; }
+  .calc-screen { padding: 16px 18px; }
+  .btn-calculate { padding: 15px 28px; font-size: 0.95rem; letter-spacing: 1.5px; }
+}
+
+@media (max-width: 380px) {
+  .bills-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .bill-card  { padding: 10px 8px 8px; }
+  .bill-image { height: 60px; font-size: 0.9rem; }
+}

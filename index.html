@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🧧 Đếm Tiền Lì Xì Tết 2025</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Decorative floating elements -->
+  <div class="deco-container" aria-hidden="true">
+    <span class="deco-flower">🌸</span>
+    <span class="deco-flower">🌸</span>
+    <span class="deco-lantern">🏮</span>
+    <span class="deco-lantern">🏮</span>
+    <span class="deco-flower">🌼</span>
+    <span class="deco-lantern">🏮</span>
+    <span class="deco-flower">🌸</span>
+  </div>
+
+  <div class="app-wrapper">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-ornament left">✦ ✦ ✦</div>
+      <div class="header-center">
+        <div class="year-badge">2026 · Bính Ngọ</div>
+        <h1 class="app-title">
+          <span class="title-icon">🧧</span>
+          Đếm Tiền Lì Xì
+          <span class="title-icon">🧧</span>
+        </h1>
+        <p class="app-subtitle">Chúc mừng năm mới · Vạn sự như ý</p>
+      </div>
+      <div class="header-ornament right">✦ ✦ ✦</div>
+    </header>
+
+    <!-- Calculator Screen -->
+    <div class="calc-screen-wrapper">
+      <div class="calc-screen">
+        <div class="screen-label">Tổng lì xì tạm tính</div>
+        <div class="screen-value" id="liveTotal">0 ₫</div>
+        <div class="screen-count" id="liveCount">0 tờ tiền</div>
+      </div>
+    </div>
+
+    <!-- Money Cards Grid -->
+    <div class="bills-grid" id="billsGrid">
+      <!-- Dynamically rendered by JS -->
+    </div>
+
+    <!-- Calculate Button -->
+    <div class="btn-calculate-wrapper">
+      <button class="btn-calculate" id="btnCalculate" onclick="calculate()">
+        <span class="btn-icon">🎉</span>
+        TÍNH TỔNG LÌ XÌ
+        <span class="btn-icon">🎉</span>
+      </button>
+      <button class="btn-reset" onclick="resetAll()">↺ Làm lại</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>🌸 @NguyenQuangAnh - Lì xì đầu năm · Phát tài phát lộc 🌸</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
