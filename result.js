@@ -40,7 +40,7 @@ function loadResultData() {
 
 /* Count-up animation */
 function animateCount(el, target) {
-  const duration = 1200;
+  const duration = 2500;
   const start    = performance.now();
   function update(now) {
     const elapsed = now - start;
